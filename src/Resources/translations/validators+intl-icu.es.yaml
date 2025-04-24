@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {La contraseña debe tener al menos un carácter.}
+          other {La contraseña debe tener al menos # caracteres.}
+      }
+  message: 'La contraseña debe cumplir al menos {count} de los siguientes requisitos:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Al menos un número.}
+          other {Al menos # números.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Al menos una letra minúscula.}
+          other {Al menos # letras minúsculas.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Al menos una letra mayúscula.}
+          other {Al menos # mayúsculas.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Al menos un carácter especial.}
+          other {Al menos # caracteres especiales.}
+      }

@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {Das Passwort muss mindestens ein Zeichen lang sein.}
+          other {Das Passwort muss mindestens # Zeichen lang sein.}
+      }
+  message: 'Das Passwort muss mindestens {count} der folgenden Anforderungen entsprechen:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Mindestens eine Zahl.}
+          other {Mindestens # Zahlen.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Mindestens ein Kleinbuchstabe.}
+          other {Mindestens # Kleinbuchstaben.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Mindestens ein Großbuchstabe.}
+          other {Mindestens # Großbuchstaben.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Mindestens ein Sonderzeichen.}
+          other {Mindestens # Sonderzeichen.}
+      }

@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {Hasło musi mieć co najmniej jeden znak.}
+          other {Hasło musi mieć co najmniej # znaków.}
+      }
+  message: 'Hasło musi spełniać co najmniej {count} poniższych wymagań:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Co najmniej jedna cyfra.}
+          other {Co najmniej # cyfr.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Co najmniej jedna mała litera.}
+          other {Co najmniej # małych liter.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Co najmniej jedna wielka litera.}
+          other {Co najmniej # wielkich liter.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Co najmniej jeden znak specjalny.}
+          other {Co najmniej # znaków specjalnych.}
+      }

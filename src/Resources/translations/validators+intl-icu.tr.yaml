@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {Parola en az bir karakter uzunluğunda olmalıdır.}
+          other {Parola en az # karakter uzunluğunda olmalıdır.}
+      }
+  message: 'Parola aşağıdaki gerekliliklerden en az {count} tanesini karşılamalıdır:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {En az bir sayı.}
+          other {En az # sayı.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {En az bir küçük harf.}
+          other {En az # küçük harf.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {En az bir büyük harf.}
+          other {En az # büyük harf.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {En az bir özel karakter.}
+          other {En az # özel karakter.}
+      }

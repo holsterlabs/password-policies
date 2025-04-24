@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {Het wachtwoord moet minstens één teken lang zijn.}
+          other {Het wachtwoord moet minstens # tekens lang zijn.}
+      }
+  message: 'Het wachtwoord moet aan minstens {count} van de volgende vereisten voldoen:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Ten minste één cijfer.}
+          other {Ten minste # cijfers.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Minimaal één kleine letter.}
+          other {Minimaal # kleine letters.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Ten minste één hoofdletter.}
+          other {Minimaal # hoofdletters.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Ten minste één speciaal teken.}
+          other {Ten minste # speciale tekens.}
+      }
