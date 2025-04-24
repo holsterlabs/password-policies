@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {Le mot de passe doit comporter au moins un caractère.}
+          other {Le mot de passe doit comporter au moins # caractères.}
+      }
+  message: 'Le mot de passe doit correspondre au moins à {count} des exigences suivantes :'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Au moins un chiffre.}
+          other {Au moins # chiffres.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Au moins une lettre minuscule.}
+          other {Au moins # lettres minuscules.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Au moins une lettre majuscule.}
+          other {Au moins # lettres majuscules.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Au moins un caractère spécial.}
+          other {Au moins # caractères spéciaux.}
+      }

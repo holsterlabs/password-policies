@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {A palavra-passe tem de ter pelo menos um carácter.}
+          other {A palavra-passe deve ter pelo menos # caracteres.}
+      }
+  message: 'A palavra-passe deve cumprir pelo menos {count} dos seguintes requisitos:'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {Pelo menos um número.}
+          other {Pelo menos # números.}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Pelo menos uma letra minúscula.}
+          other {Pelo menos # letras minúsculas.}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {Pelo menos uma letra maiúscula.}
+          other {Pelo menos # letras maiúsculas.}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {Pelo menos um carácter especial.}
+          other {Pelo menos # caracteres especiais.}
+      }

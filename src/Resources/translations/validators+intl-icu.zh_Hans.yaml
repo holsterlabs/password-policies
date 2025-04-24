@@ -1,0 +1,28 @@
+password_policy:
+  minimumLength: >-
+      {length, plural,
+          =1    {密码必须至少有一个字符长。}
+          other {密码必须至少有 # 个字符长。}
+      }
+  message: '密码必须至少满足以下 {count} 项要求：'
+  validators:
+    digitCharacterRequired: >-
+      {count, plural,
+          =1    {至少一个数字。}
+          other {至少 # 个数字。}
+      }
+    lowerCaseCharacterRequired: >-
+      {count, plural,
+          =1    {至少一个小写字母。}
+          other {至少 # 个小写字母。}
+      }
+    upperCaseCharacterRequired: >-
+      {count, plural,
+          =1    {至少一个大写字母。}
+          other {至少 # 个大写字母。}
+      }
+    specialCharacterRequired: >-
+      {count, plural,
+          =1    {至少一个特殊字符。}
+          other {至少 # 个特殊字符。}
+      }

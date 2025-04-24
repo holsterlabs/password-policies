@@ -9,6 +9,13 @@ class PasswordPolicyValidator extends ConstraintValidator
 {
     private array $policies;
 
+    private array $validators = [
+        'digitCharacterRequired' => '/\d/',
+        'lowerCaseCharacterRequired' => '/[a-z]/',
+        'upperCaseCharacterRequired' => '/[A-Z]/',
+        'specialCharacterRequired' => '/[^a-zA-Z\d]/',
+    ];
+
     public function __construct(array $policies)
     {
         $this->policies = $policies;
@@ -31,26 +38,36 @@ class PasswordPolicyValidator extends ConstraintValidator
         }
 
         if (strlen($value) < ($policy['minimumLength'] ?? 8)) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            $this->context
+                ->buildViolation('password_policy.minimumLength')
+                ->setParameter('length', $policy['minimumLength'] ?? 8)
+                ->addViolation();
             return;
         }
 
-        $checks = [
-            'digitCharacter' => '/\d/',
-            'lowerCaseCharacter' => '/[a-z]/',
-            'upperCaseCharacter' => '/[A-Z]/',
-            'specialCharacter' => '/[^a-zA-Z\d]/',
-        ];
-
         $matchCount = 0;
-        foreach ($checks as $key => $pattern) {
-            if (preg_match($pattern, $value)) {
+
+        foreach ($policy['options'] as $validator => $minLength) {
+            if (preg_match_all($this->validators[$validator], $value) >= $minLength) {
                 $matchCount++;
             }
         }
 
-        if ($matchCount < ($policy['charakterVariance'] ?? 3)) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+        $charakterVariance = (count($policy['options']) < $policy['charakterVariance']) ?
+            count($policy['options']) : $policy['charakterVariance'];
+
+        if ($matchCount < ($charakterVariance)) {
+            $this->context
+                ->buildViolation('password_policy.message')
+                ->setParameter('count', $charakterVariance)
+                ->addViolation();
+
+            foreach ($policy['options'] as $validator => $minLength) {
+                $this->context
+                    ->buildViolation('password_policy.validators.' . $validator)
+                    ->setParameter('count', $minLength)
+                    ->addViolation();
+            }
         }
     }
 }
