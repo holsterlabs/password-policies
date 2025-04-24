@@ -1,0 +1,5 @@
+services:
+  Hl\PasswordPolicies\Validator\PasswordPolicyValidator:
+    arguments:
+      $policies: '%hl_password_policies.config%'
+    tags: ['validator.constraint_validator']
